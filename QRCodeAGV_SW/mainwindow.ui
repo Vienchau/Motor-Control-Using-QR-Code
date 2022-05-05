@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1454</width>
+    <width>1405</width>
     <height>803</height>
    </rect>
   </property>
@@ -290,7 +290,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="serialTab">
      <attribute name="title">
@@ -329,52 +329,6 @@
        <string>Input Code:</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="formatCombobox">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>230</y>
-        <width>341</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="generateButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>260</y>
-        <width>141</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Generate</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="exportButton">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>230</y>
-        <width>191</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Export</string>
-      </property>
-     </widget>
-     <widget class="QGraphicsView" name="qrView">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>40</y>
-        <width>191</width>
-        <height>181</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QTextEdit" name="datainputTextEdit">
       <property name="geometry">
        <rect>
@@ -384,6 +338,45 @@
         <height>181</height>
        </rect>
       </property>
+     </widget>
+     <widget class="QLabel" name="QRLabel">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>40</y>
+        <width>256</width>
+        <height>256</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>260</y>
+        <width>341</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QPushButton" name="generateButton">
+         <property name="text">
+          <string>Generate</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="exportButton">
+         <property name="text">
+          <string>Export</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -528,7 +521,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1454</width>
+     <width>1405</width>
      <height>21</height>
     </rect>
    </property>

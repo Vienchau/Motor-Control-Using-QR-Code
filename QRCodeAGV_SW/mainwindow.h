@@ -44,6 +44,7 @@
 #include <cstring>
 #include <QVector>
 
+#include <qrcodegen.hpp>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -83,6 +84,8 @@ private slots:
     void on_generateButton_clicked();
 
     void on_exportButton_clicked();
+
+
 
 private:
            void updateSerialPort();

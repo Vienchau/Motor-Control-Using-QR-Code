@@ -1,9 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+using qrcodegen::QrCode;
+using qrcodegen::QrSegment;
+
 int maxlength = 0 ;
 double PositionTemp = 0;
 int k = 0;
+QString  sQRTextTemp =" ";
 
 QVector<double> a(201), b(201);
 QVector<double> e(1001), f(1001);
@@ -47,8 +51,17 @@ void MainWindow::updateFrame(cv::Mat *mat)
            for(zbar::Image::SymbolIterator symbol = image.symbol_begin();symbol != image.symbol_end();++symbol)
            {
                std::vector<cv::Point> vp;
-               QString text = QString::fromStdString(symbol ->get_data());
-               ui ->textBrowser ->insertPlainText(text + "\n");
+               QString sQRText = QString::fromStdString(symbol ->get_data());
+               ui -> posLineEdit -> setText(sQRText);
+               if(sQRText != sQRTextTemp)
+               {
+               ui ->textBrowser ->insertPlainText("QR Code Command: " + sQRText + "\n");
+               sQRTextTemp = sQRText;
+               }
+               else
+               {
+               sQRTextTemp = sQRText;
+               }
                int n = symbol->get_location_size();
                for(int i=0;i<n;i++)
                    {
@@ -67,8 +80,6 @@ void MainWindow::updateFrame(cv::Mat *mat)
                    line(currentFrame,pts[i],pts[(i+1)%4],cv::Scalar(255,0,0),3);
                    }
            }
-
-
            QImage frame(
                currentFrame.data,
                currentFrame.cols,
@@ -703,12 +714,49 @@ void MainWindow::plotSetting(QCustomPlot *plot, const char *xLabel, const char *
 
 void MainWindow::on_generateButton_clicked()
 {
-
+       /*QrCode qr = QrCode::encodeText((ui -> datainputTextEdit -> toPlainText()).toUtf8().data(), QrCode::Ecc::MEDIUM );
+      qint32 sz = qr.getSize();
+      QImage im(sz,sz, QImage::Format_RGB32);
+      QRgb black = qRgb(  0,  0,  0);
+      QRgb white = qRgb(255,255,255);
+      for (int y = 0; y < sz; y++)
+      {
+        for (int x = 0; x < sz; x++)
+        {
+          ui ->QRLabel->setPixmap( QPixmap::fromImage(im.scaled(256,256,Qt::KeepAspectRatio,Qt::FastTransformation),Qt::MonoOnly) );
+        }
+        }*/
+    using namespace qrcodegen;
+      // Create the QR Code object
+      QrCode qr = QrCode::encodeText((ui -> datainputTextEdit -> toPlainText()).toUtf8().data(), QrCode::Ecc::MEDIUM );
+      qint32 sz = qr.getSize();
+      QImage im(sz,sz, QImage::Format_RGB32);
+      QRgb black = qRgb(  0,  0,  0);
+      QRgb white = qRgb(255,255,255);
+      for (int y = 0; y < sz; y++)
+        for (int x = 0; x < sz; x++)
+          im.setPixel(x,y,qr.getModule(x, y) ? black : white );
+      ui->QRLabel->setPixmap( QPixmap::fromImage(im.scaled(256,256,Qt::KeepAspectRatio,Qt::FastTransformation),Qt::MonoOnly) );
 }
 
 
 void MainWindow::on_exportButton_clicked()
 {
-
+        QFileDialog dialog(this);
+        dialog.setWindowTitle("Save Image As ...");
+        dialog.setFileMode(QFileDialog::AnyFile);
+        dialog.setAcceptMode(QFileDialog::AcceptSave);
+        dialog.setNameFilter(tr("Images (*.png *.bmp *.jpg)"));
+        QStringList fileNames;
+        if (dialog.exec()) {
+            fileNames = dialog.selectedFiles();
+            if(QRegularExpression(".+\\.(png|bmp|jpg)").match(fileNames.at(0)).hasMatch()) {
+              ui->QRLabel->pixmap()->save(fileNames.at(0));
+            } else {
+                QMessageBox::information(this, "Information", "Save error: bad format or filename.");
+            }
+        }
 }
+
+
 

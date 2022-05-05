@@ -80,11 +80,12 @@ public:
     QGraphicsView *imageView;
     QWidget *genTab;
     QLabel *label_12;
-    QComboBox *formatCombobox;
+    QTextEdit *datainputTextEdit;
+    QLabel *QRLabel;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_8;
     QPushButton *generateButton;
     QPushButton *exportButton;
-    QGraphicsView *qrView;
-    QTextEdit *datainputTextEdit;
     QGroupBox *groupBox_7;
     QWidget *layoutWidget_3;
     QHBoxLayout *horizontalLayout_3;
@@ -113,7 +114,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1454, 803);
+        MainWindow->resize(1405, 803);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         groupBox_2 = new QGroupBox(centralwidget);
@@ -310,21 +311,28 @@ public:
         QFont font;
         font.setPointSize(12);
         label_12->setFont(font);
-        formatCombobox = new QComboBox(genTab);
-        formatCombobox->setObjectName(QString::fromUtf8("formatCombobox"));
-        formatCombobox->setGeometry(QRect(10, 230, 341, 22));
-        generateButton = new QPushButton(genTab);
-        generateButton->setObjectName(QString::fromUtf8("generateButton"));
-        generateButton->setGeometry(QRect(10, 260, 141, 41));
-        exportButton = new QPushButton(genTab);
-        exportButton->setObjectName(QString::fromUtf8("exportButton"));
-        exportButton->setGeometry(QRect(370, 230, 191, 31));
-        qrView = new QGraphicsView(genTab);
-        qrView->setObjectName(QString::fromUtf8("qrView"));
-        qrView->setGeometry(QRect(370, 40, 191, 181));
         datainputTextEdit = new QTextEdit(genTab);
         datainputTextEdit->setObjectName(QString::fromUtf8("datainputTextEdit"));
         datainputTextEdit->setGeometry(QRect(10, 40, 331, 181));
+        QRLabel = new QLabel(genTab);
+        QRLabel->setObjectName(QString::fromUtf8("QRLabel"));
+        QRLabel->setGeometry(QRect(370, 40, 256, 256));
+        widget = new QWidget(genTab);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(10, 260, 341, 26));
+        horizontalLayout_8 = new QHBoxLayout(widget);
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        generateButton = new QPushButton(widget);
+        generateButton->setObjectName(QString::fromUtf8("generateButton"));
+
+        horizontalLayout_8->addWidget(generateButton);
+
+        exportButton = new QPushButton(widget);
+        exportButton->setObjectName(QString::fromUtf8("exportButton"));
+
+        horizontalLayout_8->addWidget(exportButton);
+
         tabWidget->addTab(genTab, QString());
         groupBox_7 = new QGroupBox(centralwidget);
         groupBox_7->setObjectName(QString::fromUtf8("groupBox_7"));
@@ -418,7 +426,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1454, 21));
+        menubar->setGeometry(QRect(0, 0, 1405, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -426,7 +434,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -452,6 +460,7 @@ public:
         closeButton->setText(QCoreApplication::translate("MainWindow", "CLOSE", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(serialTab), QCoreApplication::translate("MainWindow", "QR Scanner", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "Input Code:", nullptr));
+        QRLabel->setText(QString());
         generateButton->setText(QCoreApplication::translate("MainWindow", "Generate", nullptr));
         exportButton->setText(QCoreApplication::translate("MainWindow", "Export", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(genTab), QCoreApplication::translate("MainWindow", "QR Generate", nullptr));

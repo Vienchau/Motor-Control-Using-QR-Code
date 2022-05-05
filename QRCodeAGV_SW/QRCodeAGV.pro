@@ -41,3 +41,7 @@ LIBS += D:\MY_WORK\OPENCV\opencvx2\opencv\release\bin\libopencv_objdetect455.dll
 
 INCLUDEPATH += D:\MY_WORK\lib\boost_1_79_0\MY_WORKlibBoostbuild\include\boost-1_79
 
+
+HEADERS += D:\MY_WORK\Qt\Project\QRScannerMotor\QRCodeAGV_SW\qrcodegen.hpp
+
+SOURCES += D:\MY_WORK\Qt\Project\QRScannerMotor\QRCodeAGV_SW\qrcodegen.cpp
